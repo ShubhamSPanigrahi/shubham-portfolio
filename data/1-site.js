@@ -10,6 +10,6 @@ const MENTEES=5;
    Leave the string empty ('') to fall back to the SP monogram.
    Example:  portrait:'media/headshot.jpg'                        */
 const SITE={
-  portrait:'',
+  portrait:'media/Shubham Panigrahi.jpg',
   portraitAlt:'Shubham Subrot Panigrahi'
 };
