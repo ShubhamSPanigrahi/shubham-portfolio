@@ -82,6 +82,7 @@ const PANELS={
   /* Under review & in preparation */
   underReview: `<h3>Under review &amp; in preparation</h3>
         <ul>
+          <li><b>Physics-informed digital twins for predicting and managing potato quality in bulk storage: A conceptual framework and research roadmap; <i>Trends in Food Science and Technology</i> (under review)</li>
           <li><b>From Gamma Models to Explainable AI:</b> A Comparative Framework for Predicting <i>Listeria monocytogenes</i> Growth in Ready-to-Eat Meat Products &mdash; <i>Food Research International</i> (under review)</li>
           <li><b>Effects of Infrared-assisted Hot-air Drying</b> on the Chamomile Bioactive Substances &mdash; <i>Food Science and Biotechnology</i> (under review)</li>
           <li><b>Advances in Computer Simulation and Modeling for In-bin Grain Management</b> &mdash; book chapter, CRC Press (under review)</li>
