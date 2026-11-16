@@ -22,7 +22,7 @@ const SECTIONS={
   research:{
     num:  '01 / Research',
     title:'Four pillars, one system',
-    lede: 'My work moves along a single chain &mdash; understand the physics, learn from the data, build the system, then prove it pays. Select a pillar to see the questions, methods and outputs behind it.'
+    lede: 'My work moves along a single chain &mdash; understand the physics, learn from the data, build the system, then prove it pays.'
   },
   work:{
     num:  '02 / Selected work',
