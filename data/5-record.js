@@ -8,9 +8,6 @@ const FUNDING=[
  ['Field Validation of Self-Adaptive In-Bin Drying Coupled with Sparse-Sensor Digital Twin Monitoring &mdash; NC-213 The Andersons','Principal Investigator','USD 150,000','sub','Submitted'],
  ['Translating AI-Enabled Thermal Computer Vision into Practice for Foreign Material Detection in Poultry Processing &mdash; NSF TTP-T','Key personnel (PI: Dr. Dongyi Wang; Co-PIs: Dr. Jeyam Subbiah, Dr. Casey Owens; industry: FloVision, Simmons, Tyson Foods)','USD 1,200,000','sub','Submitted'],
  ['Translating a Cyber-Physical Digital Twin Model for Autonomous On-Farm Commodity Storage &mdash; NSF TTP-T','Key personnel (PI: Dr. Kaushik Luthra; Co-PIs: Dr. Jeyam Subbiah, Dr. Dirk Maier; industry: OPI Systems, Amber Agriculture)','USD 1,199,558','sub','Submitted'],
- ['Energy Efficient on-Farm Canola Drying in Western Canada &mdash; Canola Council of Canada','Contributing writer (PI: Dr. Chandra B. Singh)','CAD 458,264','final','Reached final evaluation'],
- ['Advancing Ozone as a Systems-Based Organic Fumigation Technology for Bulk Grain Handling &mdash; USDA CPPM','Key personnel (PI: Dr. Kaushik Luthra)','USD 299,948','nf','Not funded &mdash; medium priority'],
- ['Multi-Modal Physical Sensing for Quantitative Food Composition Measurement &mdash; USDA AFRI SAS','Key personnel (PI: Dr. Kaushik Luthra)','USD 4,993,770','nf','Not funded &mdash; medium priority']
 ];
 
 const CAREER=[
