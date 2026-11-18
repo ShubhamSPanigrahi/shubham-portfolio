@@ -57,7 +57,7 @@ const SECTIONS={
   teaching:{
     num:  '08 / Teaching &amp; leadership',
     title:'Mentoring, teaching and professional service',
-    lede: 'Five current mentees at the University of Arkansas, plus three co-supervised on the Prince Edward Island collaboration, two credit courses developed and taught, and elected service across ASABE communities and journal editorial boards.'
+    lede: 'Six mentees at the University of Arkansas &mdash; three Ph.D. researchers in progress, three now graduated &mdash; plus three co-supervised on the Prince Edward Island collaboration, two credit courses developed and taught, and elected service across ASABE communities and journal editorial boards.'
   },
   about:{
     num:  '09 / About',
@@ -82,7 +82,7 @@ const PANELS={
   /* Under review & in preparation */
   underReview: `<h3>Under review &amp; in preparation</h3>
         <ul>
-          <li><b>Physics-informed digital twins for predicting and managing potato quality in bulk storage: A conceptual framework and research roadmap; <i>Trends in Food Science and Technology</i> (under review)</li>
+          <li><b>Physics-informed Digital Twins for Predicting and Managing Potato Quality in Bulk Storage:</b> A Conceptual Framework and Research Roadmap &mdash; <i>Computers and Electronics in Agriculture</i> (submitted)</li>
           <li><b>From Gamma Models to Explainable AI:</b> A Comparative Framework for Predicting <i>Listeria monocytogenes</i> Growth in Ready-to-Eat Meat Products &mdash; <i>Food Research International</i> (under review)</li>
           <li><b>Effects of Infrared-assisted Hot-air Drying</b> on the Chamomile Bioactive Substances &mdash; <i>Food Science and Biotechnology</i> (under review)</li>
           <li><b>Advances in Computer Simulation and Modeling for In-bin Grain Management</b> &mdash; book chapter, CRC Press (under review)</li>
@@ -148,9 +148,9 @@ const PANELS={
   mentees: `<h3>Current mentees</h3>
           <p style="font-size:14px;color:var(--ink-soft);line-height:1.65;margin-bottom:16px">Co-supervising at the University of Arkansas with emphasis on experimental design, data analysis, modeling, publication and professional development.</p>
           <dl class="kv">
-            <dt>2 &times; Ph.D.</dt><dd>Multiphysics modeling and predictive microbiology</dd>
-            <dt>2 &times; M.S.</dt><dd>Ozone treatment for seed and grain quality; experimental and CFD modeling of ozone transport in deep grain beds</dd>
-            <dt>1 &times; B.S.</dt><dd>Senior undergraduate researcher</dd>
+            <dt>3 &times; Ph.D.</dt><dd>Multiphysics modeling and life cycle analysis</dd>
+            <dt>2 &times; M.S.</dt><dd>Ozone treatment for seed and grain quality; experimental and CFD modeling of ozone transport in deep grain beds <b>(graduated)</b></dd>
+            <dt>1 &times; B.S.</dt><dd>Senior undergraduate researcher <b>(graduated)</b></dd>
             <dt>Also</dt><dd>Co-supervising a third-year undergraduate, a master's and a Ph.D. student on CFD of potato-storage aeration (UPEI collaboration)</dd>
           </dl>`,
 
