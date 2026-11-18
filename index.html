@@ -172,6 +172,13 @@ section.alt{background:var(--bg-alt)}
 .herovis{position:relative}
 .canvwrap{position:relative; border-radius:var(--r); overflow:hidden; background:var(--surface);
   border:1px solid var(--line); box-shadow:var(--shadow-lg); aspect-ratio:1/1.02}
+.canvwrap.figure{aspect-ratio:auto}
+.canvwrap.figure #silo{display:none}
+.herofig{display:block; width:100%; height:auto}
+.canvwrap.figure .vislabel{background:color-mix(in srgb, var(--surface) 86%, transparent);
+  padding:7px 11px; border-radius:8px; backdrop-filter:blur(6px)}
+.canvwrap.figure .visfoot{background:color-mix(in srgb, var(--surface) 86%, transparent);
+  padding:6px 10px; border-radius:7px; backdrop-filter:blur(6px); left:14px; right:14px}
 #silo{display:block; width:100%; height:100%}
 .vislabel{position:absolute; left:14px; top:13px; z-index:2; display:flex; flex-direction:column; gap:3px}
 .vislabel b{font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); font-weight:600}
@@ -201,7 +208,17 @@ section.alt{background:var(--bg-alt)}
   .stat{border-bottom:1px solid var(--line)} .stat:nth-child(2n){border-right:0}}
 
 /* ============ PILLARS ============ */
-.pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch}
+/* Icon, heading, blurb and link sit on the same baseline in all four cards. */
+@supports (grid-template-rows: subgrid){
+  .pillars{grid-template-rows:auto auto 1fr auto auto}
+  .pillar{grid-row:span 5; display:grid; grid-template-rows:subgrid; row-gap:0}
+}
+@supports not (grid-template-rows: subgrid){
+  .pillar{display:flex; flex-direction:column}
+  .pillar h3{min-height:2.3em}
+  .pillar>p{flex:1}
+}
 .pillar{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:26px 22px;
   cursor:pointer; text-align:left; transition:.26s var(--ease); position:relative; overflow:hidden; width:100%}
 .pillar::after{content:""; position:absolute; left:0; top:0; width:100%; height:3px;
@@ -209,9 +226,9 @@ section.alt{background:var(--bg-alt)}
 .pillar:hover,.pillar[aria-expanded="true"]{border-color:var(--pc); transform:translateY(-4px); box-shadow:var(--shadow-md)}
 .pillar:hover::after,.pillar[aria-expanded="true"]::after{transform:scaleX(1)}
 .picon{width:40px; height:40px; border-radius:11px; background:var(--pw); color:var(--pc);
-  display:grid; place-items:center; margin-bottom:16px}
+  display:grid; place-items:center; margin-bottom:16px; align-self:start}
 .picon svg{width:21px; height:21px}
-.pillar h3{font-size:1.14rem; margin-bottom:9px; letter-spacing:-.01em}
+.pillar h3{font-size:1.14rem; margin-bottom:9px; letter-spacing:-.01em; align-self:start}
 .pillar>p{font-size:13.8px; color:var(--ink-soft); line-height:1.58}
 .pdetail{max-height:0; overflow:hidden; transition:max-height .42s var(--ease), margin .42s var(--ease)}
 .pillar[aria-expanded="true"] .pdetail{max-height:420px; margin-top:16px}
@@ -485,7 +502,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
 .galitem{margin:0; border:1px solid var(--line); border-radius:11px; overflow:hidden; background:var(--surface)}
 .galitem.wide{grid-column:1/-1}
 .galitem img{width:100%; display:block; background:var(--bg-alt)}
-.galitem video{width:100%; display:block; aspect-ratio:16/9; object-fit:contain; background:#0B1620}
+.galitem video{width:100%; display:block; height:auto; background:#0B1620}
 .galitem a{display:block}
 .galitem .embed{position:relative; padding-top:56.25%; background:#000}
 .galitem .embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
@@ -586,7 +603,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
           <a class="chip" href="https://scholar.google.ca/citations?user=Shubham-Panigrahi" target="_blank" rel="noopener noreferrer">Google Scholar</a>
           <a class="chip" href="https://orcid.org/0000-0002-7482-9896" target="_blank" rel="noopener noreferrer">ORCID 0000-0002-7482-9896</a>
           <a class="chip" href="https://www.researchgate.net/profile/Shubham-Panigrahi" target="_blank" rel="noopener noreferrer">ResearchGate</a>
-          <a class="chip" href="https://www.linkedin.com/in/shubham-panigrahi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="chip" href="https://www.linkedin.com/in/shubham-subrot-panigrahi-ph-d-p-eng-36b609aa/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         </div>
       </div>
       <div class="herovis">
@@ -605,7 +622,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
   <div class="statgrid" id="stats">
     <div class="stat"><i aria-hidden="true"></i><b data-to="37" id="st-pubs">0</b><span>Published refereed<br>journal articles</span></div>
     <div class="stat"><i aria-hidden="true"></i><b data-to="20" id="st-lead">0</b><span>First- or corresponding-<br>authored articles</span></div>
-    <div class="stat"><i aria-hidden="true"></i><b data-to="5" id="st-mentees">0</b><span>Graduate &amp; undergraduate<br>mentees supervised</span></div>
+    <div class="stat"><i aria-hidden="true"></i><b data-to="5" id="st-mentees">0</b><span>Graduate &amp; undergraduate<br>researchers mentored</span></div>
     <div class="stat"><i aria-hidden="true"></i><b data-to="105" data-pre="$" data-suf="K">0</b><span>Industry contract<br>led and funded</span></div>
   </div>
 </div>
@@ -818,7 +835,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
         <button class="btn light" id="copymail">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
           <span id="mailtx">shubhampanigrahi69@gmail.com</span></button>
-        <a class="btn outline" href="https://www.linkedin.com/in/shubham-panigrahi" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        <a class="btn outline" href="https://www.linkedin.com/in/shubham-subrot-panigrahi-ph-d-p-eng-36b609aa/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
         <a class="btn outline" href="Shubham_Subrot_Panigrahi_CV.pdf" target="_blank" rel="noopener">Download CV</a>
       </div>
     </div>
@@ -833,7 +850,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
       <a href="https://scholar.google.ca/citations?user=Shubham-Panigrahi" target="_blank" rel="noopener noreferrer">Scholar</a> &middot;
       <a href="https://orcid.org/0000-0002-7482-9896" target="_blank" rel="noopener noreferrer">ORCID</a> &middot;
       <a href="https://www.researchgate.net/profile/Shubham-Panigrahi" target="_blank" rel="noopener noreferrer">ResearchGate</a> &middot;
-      <a href="https://www.linkedin.com/in/shubham-panigrahi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/shubham-subrot-panigrahi-ph-d-p-eng-36b609aa/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </span>
     <span class="mono" style="font-size:.63rem">Last updated <span id="lastup">November 2026</span></span>
   </div>
@@ -868,7 +885,7 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
       "https://orcid.org/0000-0002-7482-9896",
       "https://scholar.google.ca/citations?user=Shubham-Panigrahi",
       "https://www.researchgate.net/profile/Shubham-Panigrahi",
-      "https://www.linkedin.com/in/shubham-panigrahi"
+      "https://www.linkedin.com/in/shubham-subrot-panigrahi-ph-d-p-eng-36b609aa/"
     ]
   }
 }
@@ -937,6 +954,19 @@ const FILL=s=>String(s).replace(/\{n\}/g,N_PUBS).replace(/\{lead\}/g,N_LEAD)
 $('#pub-h2').innerHTML=FILL(SECTIONS.publications.title);
 $('#pub-lede').innerHTML=FILL(SECTIONS.publications.lede);
 $('#lastup').textContent=LAST_UPDATED.label;
+if(typeof SITE==='object'&&SITE.heroFigure&&SITE.heroFigure.src){
+  const wrap=$('.canvwrap'), hf=SITE.heroFigure;
+  const img=new Image();
+  img.className='herofig'; img.alt=hf.alt||''; img.loading='eager';
+  img.onload=()=>{
+    wrap.classList.add('figure');
+    wrap.insertBefore(img,wrap.firstChild);
+    $('.vislabel').innerHTML='<b>'+(hf.label||'')+'</b><span>'+(hf.sublabel||'')+'</span>';
+    $('.visfoot').innerHTML='<span>'+(hf.credit||'')+'</span>';
+    $('#silo').setAttribute('aria-hidden','true');
+  };
+  img.src=hf.src;
+}
 if(typeof SITE==='object'&&SITE.portrait){
   const av=$('#avatar');
   av.classList.add('hasimg'); av.removeAttribute('aria-hidden');
@@ -1038,7 +1068,7 @@ $('#wfilters').innerHTML=WF.map(([k,l],i)=>{
   return `<button class="fbtn${i===0?' on':''}" data-f="${k}">${l}<span class="ct">${ct}</span></button>`}).join('');
 $('#workgrid').innerHTML=CASES.map((c,i)=>`
 <button class="card rv" style="--ac:${c.ac};--aw:${c.aw};transition-delay:${(i%3)*80}ms" data-c="${c.id}" data-p="${c.pillar}" aria-label="Open case study: ${esc(c.t)}">
-  <span class="thumb">${c.thumb?`<img class="thumbimg" src="${c.thumb}" alt="" loading="lazy">`:ART[c.vis](c.art||c.ac,c.id)}<span class="badge${c.status==='Published'?' done':''}">${c.status}</span></span>
+  <span class="thumb">${ART[c.vis](c.art||c.ac,c.id)}${c.thumb?`<img class="thumbimg" src="${c.thumb}" alt="" loading="lazy" onerror="this.remove()">`:''}<span class="badge${c.status==='Published'?' done':''}">${c.status}</span></span>
   <span class="cbody">
     <span class="ctag">${c.tag}</span>
     <h3>${c.t}</h3>
@@ -1064,7 +1094,8 @@ function mediaHTML(list){
     const cap=m.caption?`<figcaption>${m.caption}</figcaption>`:'';
     let inner='';
     if(m.type==='video'){
-      inner=`<video controls playsinline preload="none"${m.poster?` poster="${m.poster}"`:''}>`
+      inner=`<video controls playsinline preload="metadata"${m.poster?` poster="${m.poster}"`:''}`
+          + ` onerror="this.closest('figure').remove()">`
           + `<source src="${m.src}" type="video/mp4">`
           + `<a href="${m.src}">Download the video</a></video>`;
     }else if(m.type==='youtube'){
@@ -1079,7 +1110,8 @@ function mediaHTML(list){
           + `<a class="galout" href="https://vimeo.com/${m.id}" target="_blank" rel="noopener noreferrer">Watch on Vimeo &#8599;</a>`;
     }else{
       inner=`<a href="${m.src}" target="_blank" rel="noopener noreferrer">`
-          + `<img src="${m.src}" alt="${esc(m.alt||m.caption||'')}" loading="lazy"></a>`;
+          + `<img src="${m.src}" alt="${esc(m.alt||m.caption||'')}" loading="lazy"`
+          + ` onerror="this.closest('figure').remove()"></a>`;
     }
     return `<figure class="galitem${m.wide?' wide':''}">${inner}${cap}</figure>`;
   }).join('');
@@ -1095,7 +1127,7 @@ function openCase(id){
   mbox.style.setProperty('--ac',c.ac); mbox.style.setProperty('--aw',c.aw);
   mbox.innerHTML=`
   <div class="mhead">
-    <div><span class="ctag" style="color:${c.ac}">${c.tag} &middot; ${c.status}</span>
+    <div><span class="ctag" style="color:${c.ac}">${c.tag}${esc(c.status)===esc(c.tag)?'':' &middot; '+c.status}</span>
       <h3 id="mtitle">${c.t}</h3></div>
     <button class="mclose" id="mclose" aria-label="Close case study">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
@@ -1118,6 +1150,15 @@ function openCase(id){
       <a class="btn sec" href="Shubham_Subrot_Panigrahi_CV.pdf" target="_blank" rel="noopener">Download CV</a>
     </div>
   </div>`;
+  /* A drawn illustration is a stand-in. As soon as a real figure or clip
+     loads for this case study, drop it. If none load, it stays. */
+  (function retireIllustration(){
+    const vis=$('.mvis',mbox); if(!vis||!Array.isArray(c.media)||!c.media.length)return;
+    const hide=()=>vis.remove();
+    $$('.galitem img',mbox).forEach(i=>{ if(i.complete&&i.naturalWidth>0)hide(); else i.addEventListener('load',hide,{once:true}); });
+    $$('.galitem video',mbox).forEach(v=>{ v.addEventListener('loadeddata',hide,{once:true});
+      if(v.readyState>=2)hide(); });
+  })();
   scrim.classList.add('open'); modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
   document.body.style.overflow='hidden';
   $('#mclose').focus();
