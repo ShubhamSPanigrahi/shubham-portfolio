@@ -151,7 +151,7 @@ const PANELS={
             <dt>3 &times; Ph.D.</dt><dd>Multiphysics modeling and life cycle analysis</dd>
             <dt>2 &times; M.S.</dt><dd>Ozone treatment for seed and grain quality; experimental and CFD modeling of ozone transport in deep grain beds <b>(graduated)</b></dd>
             <dt>1 &times; B.S.</dt><dd>Senior undergraduate researcher <b>(graduated)</b></dd>
-            <dt>Also</dt><dd>Co-supervising a third-year undergraduate, a master's and a Ph.D. student on CFD of potato-storage aeration (UPEI collaboration)</dd>
+            <dt>Also</dt><dd>Co-supervising a third-year undergraduate <b>(graduated)</b>, a master's <b>(graduated)</b> and a Ph.D. student on CFD of potato-storage aeration (UPEI collaboration)</dd>
           </dl>`,
 
   /* Courses developed & taught */

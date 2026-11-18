@@ -125,7 +125,8 @@ live, each with its published caption and full citation:
 | `fig-dt2019-5.jpg` | Fig. 5, *Drying Technology* 38(13) (2019) | CFD case study |
 | `fig-cea2020-9.jpg` | Fig. 9, *Comput. Electron. Agric.* 179 (2020) | CFD case study |
 | `fig-dt2022-8.jpg` | Fig. 8, *Drying Technology* (2022) | CFD case study |
-| `fig-crfsfs2025-9.jpg` | Fig. 9, *Compr. Rev. Food Sci. Food Saf.* 24(5) (2025) | Drying case study |
+| `fig-crfsfs2025-9.jpg` | Fig. 9, *Compr. Rev. Food Sci. Food Saf.* 24(5) (2025) | IoT case study |
+| `fig-seta2023-1.jpg` | Fig. 1, *Sustainable Energy Technol. Assess.* 60 (2023) | Drying case study |
 | `fig-chapter13-1.jpg` | Fig. 13.1, Robotics chapter, Elsevier | Poultry case study |
 
 Captions live in `data/3-projects.js`. To swap a figure, overwrite the file in
@@ -169,6 +170,22 @@ here.** Put a compressed MP4 in `media/` and:
 The `poster` is optional but worth adding — it's the still frame shown before
 play. See `media/README.md` for size limits and why self-hosting long video is
 a bad idea.
+
+## The hero animation
+
+The top of the page plays `media/hero-simulations.mp4`, a silent 18-second loop
+built from your simulation output: the air-curtain pathlines, the pressure and
+velocity contours, the 24-hour humidity transition, the V-duct configurations
+and the discretised domain. It autoplays muted, loops, and is skipped entirely
+for visitors who have reduced motion turned on.
+
+It is configured in `data/1-site.js` under `heroVideo`. Remove that block and
+the page falls back to the still in `heroFigure`; remove both and the original
+animated silo schematic comes back.
+
+To rebuild the loop with different figures, the montage is just stills with
+crossfades — any 16:9 MP4 of about 500 KB will drop straight in under the same
+filename.
 
 ## Add your portrait
 

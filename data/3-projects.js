@@ -81,6 +81,9 @@ const CASES=[
      caption:'Sensor cable and spear probe installed inside a commercial sugar beet pile, alongside the existing site instrumentation.'},
     {type:'image', src:'media/ppot-fan-sensor.jpg',
      caption:'Pressure, temperature and humidity sensing installed on the aeration fan for automated pile conditioning.'}
+  ,
+    {type:'image', src:'media/fig-crfsfs2025-9.jpg', wide:true,
+     caption:'SCADA and IoT integration in drying systems. Figure 9, <i>Comprehensive Reviews in Food Science and Food Safety</i> 24(5), e70269 (2025).'}
   ]
   },
 
@@ -98,8 +101,8 @@ const CASES=[
         {t:'Impact of On-farm High-temperature Wheat Drying Parameters on Milling Quality',j:'Journal of Stored Products Research 119, 103189 (2026)',d:'10.1016/j.jspr.2026.103189'}],
   value:'The bridge between engineering performance and the management decision that actually gets made.',
   media:[
-    {type:'image', src:'media/fig-crfsfs2025-9.jpg', wide:true,
-     caption:'SCADA and IoT integration in drying systems. Figure 9, <i>Comprehensive Reviews in Food Science and Food Safety</i> 24(5), e70269 (2025).'}
+    {type:'image', src:'media/fig-seta2023-1.jpg', wide:true,
+     caption:'Greenhouse-gas emissions (ten-year average) per hectare for six commodities, establishing the baseline against which drying reform measures are assessed. Figure 1, <i>Sustainable Energy Technologies and Assessments</i> 60, 103430 (2023).'}
   ]
   },
 

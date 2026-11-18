@@ -16,9 +16,21 @@ const SITE={
   portrait:'media/headshot.jpg',
   portraitAlt:'Shubham Subrot Panigrahi',
 
-  /* Hero figure. Replaces the animated silo schematic with a real figure.
-     Delete this whole heroFigure block (or set src:'') to bring the
-     animation back.                                                        */
+  /* Hero animation. A looping montage of simulation output: the cold-air
+     curtain pathlines, pressure and velocity contours, the 24 h humidity
+     transition, the V-duct configurations and the discretised domain.
+     Delete this heroVideo block to fall back to heroFigure below it, or
+     delete both to bring back the animated silo schematic.                 */
+  heroVideo:{
+    src:'media/hero-simulations.mp4',
+    poster:'media/hero-simulations-poster.jpg',
+    alt:'Looping montage of computational fluid dynamics results: air-curtain pathlines, pressure and velocity contours, humidity transition and meshed grain configurations.',
+    label:'Simulation reel &mdash; CFD &amp; multiphysics',
+    sublabel:'Ansys Fluent &middot; finite-volume models',
+    credit:'Panigrahi et al., 2019&ndash;2026'
+  },
+
+  /* Fallback still, used only if the video above is removed or fails. */
   heroFigure:{
     src:'media/uav-dry-bean-field.jpg',
     alt:'UAV in flight over a dry bean breeding trial, and the multispectral and LiDAR payload on its landing pad.',

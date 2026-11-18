@@ -174,7 +174,7 @@ section.alt{background:var(--bg-alt)}
   border:1px solid var(--line); box-shadow:var(--shadow-lg); aspect-ratio:1/1.02}
 .canvwrap.figure{aspect-ratio:auto}
 .canvwrap.figure #silo{display:none}
-.herofig{display:block; width:100%; height:auto}
+.herofig{display:block; width:100%; height:auto; background:#fff}
 .canvwrap.figure .vislabel{background:color-mix(in srgb, var(--surface) 86%, transparent);
   padding:7px 11px; border-radius:8px; backdrop-filter:blur(6px)}
 .canvwrap.figure .visfoot{background:color-mix(in srgb, var(--surface) 86%, transparent);
@@ -208,17 +208,12 @@ section.alt{background:var(--bg-alt)}
   .stat{border-bottom:1px solid var(--line)} .stat:nth-child(2n){border-right:0}}
 
 /* ============ PILLARS ============ */
-.pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch}
+.pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:start}
 /* Icon, heading, blurb and link sit on the same baseline in all four cards. */
-@supports (grid-template-rows: subgrid){
-  .pillars{grid-template-rows:auto auto 1fr auto auto}
-  .pillar{grid-row:span 5; display:grid; grid-template-rows:subgrid; row-gap:0}
-}
-@supports not (grid-template-rows: subgrid){
-  .pillar{display:flex; flex-direction:column}
-  .pillar h3{min-height:2.3em}
-  .pillar>p{flex:1}
-}
+/* Heights are equalised in script so the icon, heading, blurb and link line up
+   across all four cards, while each card's detail panel still expands to its
+   own full height. */
+.pillar{display:flex; flex-direction:column}
 .pillar{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:26px 22px;
   cursor:pointer; text-align:left; transition:.26s var(--ease); position:relative; overflow:hidden; width:100%}
 .pillar::after{content:""; position:absolute; left:0; top:0; width:100%; height:3px;
@@ -229,9 +224,9 @@ section.alt{background:var(--bg-alt)}
   display:grid; place-items:center; margin-bottom:16px; align-self:start}
 .picon svg{width:21px; height:21px}
 .pillar h3{font-size:1.14rem; margin-bottom:9px; letter-spacing:-.01em; align-self:start}
-.pillar>p{font-size:13.8px; color:var(--ink-soft); line-height:1.58}
+.pillar>p,.pblurb{font-size:13.8px; color:var(--ink-soft); line-height:1.58}
 .pdetail{max-height:0; overflow:hidden; transition:max-height .42s var(--ease), margin .42s var(--ease)}
-.pillar[aria-expanded="true"] .pdetail{max-height:420px; margin-top:16px}
+
 .pdetail dl{margin:0; padding-top:15px; border-top:1px dashed var(--line); display:grid; gap:11px}
 .pdetail dt{font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--pc); font-weight:600}
 .pdetail dd{margin:3px 0 0; font-size:13px; color:var(--ink-soft); line-height:1.5}
@@ -954,7 +949,24 @@ const FILL=s=>String(s).replace(/\{n\}/g,N_PUBS).replace(/\{lead\}/g,N_LEAD)
 $('#pub-h2').innerHTML=FILL(SECTIONS.publications.title);
 $('#pub-lede').innerHTML=FILL(SECTIONS.publications.lede);
 $('#lastup').textContent=LAST_UPDATED.label;
-if(typeof SITE==='object'&&SITE.heroFigure&&SITE.heroFigure.src){
+if(typeof SITE==='object'&&SITE.heroVideo&&SITE.heroVideo.src){
+  const wrap=$('.canvwrap'), hv=SITE.heroVideo;
+  const v=document.createElement('video');
+  v.className='herofig'; v.muted=true; v.loop=true; v.playsInline=true;
+  v.autoplay=!RM; v.preload='metadata'; v.setAttribute('aria-label',hv.alt||'');
+  if(hv.poster)v.poster=hv.poster;
+  v.innerHTML=`<source src="${hv.src}" type="video/mp4">`;
+  v.addEventListener('loadeddata',()=>{
+    wrap.classList.add('figure');
+    $('.vislabel').innerHTML='<b>'+(hv.label||'')+'</b><span>'+(hv.sublabel||'')+'</span>';
+    $('.visfoot').innerHTML='<span>'+(hv.credit||'')+'</span>';
+    $('#silo').setAttribute('aria-hidden','true');
+    if(!RM){const pr=v.play(); if(pr&&pr.catch)pr.catch(()=>{v.controls=true;});}
+  },{once:true});
+  v.addEventListener('error',()=>v.remove(),{once:true});
+  wrap.insertBefore(v,wrap.firstChild);
+}
+else if(typeof SITE==='object'&&SITE.heroFigure&&SITE.heroFigure.src){
   const wrap=$('.canvwrap'), hf=SITE.heroFigure;
   const img=new Image();
   img.className='herofig'; img.alt=hf.alt||''; img.loading='eager';
@@ -1046,7 +1058,7 @@ cio.observe($('#stats'));
 $('#pillars').innerHTML=PILLARS.map((p,i)=>`
 <button class="pillar rv" style="--pc:${p.c};--pw:${p.w};transition-delay:${i*70}ms" aria-expanded="false" data-p="${p.id}">
   <span class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p.icon}</svg></span>
-  <h3>${p.n}</h3><p>${p.blurb}</p>
+  <h3>${p.n}</h3><p class="pblurb">${p.blurb}</p>
   <span class="pmore">Questions &amp; methods
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
   <span class="pdetail"><dl>
@@ -1055,11 +1067,38 @@ $('#pillars').innerHTML=PILLARS.map((p,i)=>`
     <div><dt>Representative output</dt><dd>${p.o}</dd></div>
   </dl></span>
 </button>`).join('');
+function closePillar(o){
+  o.setAttribute('aria-expanded','false');
+  const d=$('.pdetail',o); if(d){d.style.maxHeight='0px'; d.style.marginTop='0px';}
+}
+function openPillar(o){
+  o.setAttribute('aria-expanded','true');
+  const d=$('.pdetail',o); if(!d)return;
+  d.style.marginTop='16px'; d.style.maxHeight=d.scrollHeight+'px';
+}
 $$('.pillar').forEach(b=>b.addEventListener('click',()=>{
-  const open=b.getAttribute('aria-expanded')==='true';
-  $$('.pillar').forEach(o=>o.setAttribute('aria-expanded','false'));
-  b.setAttribute('aria-expanded',String(!open));
+  const wasOpen=b.getAttribute('aria-expanded')==='true';
+  $$('.pillar').forEach(closePillar);
+  if(!wasOpen)openPillar(b);
 }));
+
+/* Line the four cards up only while they sit side by side. */
+function equalizePillars(){
+  const cards=$$('.pillar'); if(cards.length<2)return;
+  const on=window.innerWidth>980;
+  ['h3','.pblurb','.pmore'].forEach(sel=>{
+    const els=cards.map(c=>$(sel,c)).filter(Boolean);
+    els.forEach(e=>e.style.minHeight='');
+    if(!on||els.length<2)return;
+    const max=Math.max(...els.map(e=>e.getBoundingClientRect().height));
+    els.forEach(e=>e.style.minHeight=max.toFixed(2)+'px');
+  });
+  const open=cards.find(c=>c.getAttribute('aria-expanded')==='true');
+  if(open){const d=$('.pdetail',open); if(d)d.style.maxHeight=d.scrollHeight+'px';}
+}
+equalizePillars();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(equalizePillars);
+addEventListener('load',equalizePillars);
 
 /* ===================== WORK ===================== */
 const WF=[['all','All work'],...PILLARS.map(p=>[p.id,p.n.replace(/ &amp;.*/,'').replace(/,.*/,'')])];
