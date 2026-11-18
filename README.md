@@ -112,7 +112,41 @@ caption), and `wide:true` to make it span the full width instead of half.
 You can also set `thumb:'media/something.jpg'` on a case study to replace the
 drawn illustration on its card with a real photograph.
 
+## Journal figures
+
+Eight figures were extracted from your own papers at 300 dpi and are already
+live, each with its published caption and full citation:
+
+| File | Figure | Appears in |
+|---|---|---|
+| `fig-bioseng2021-3.jpg` | Fig. 3, *Biosystems Engineering* 205 (2021) | CFD case study (also its card) |
+| `fig-dt2019-1.jpg` | Fig. 1, *Drying Technology* 38(13) (2019) | CFD case study |
+| `fig-dt2019-3.jpg` | Fig. 3, *Drying Technology* 38(13) (2019) | CFD case study |
+| `fig-dt2019-5.jpg` | Fig. 5, *Drying Technology* 38(13) (2019) | CFD case study |
+| `fig-cea2020-9.jpg` | Fig. 9, *Comput. Electron. Agric.* 179 (2020) | CFD case study |
+| `fig-dt2022-8.jpg` | Fig. 8, *Drying Technology* (2022) | CFD case study |
+| `fig-crfsfs2025-9.jpg` | Fig. 9, *Compr. Rev. Food Sci. Food Saf.* 24(5) (2025) | Drying case study |
+| `fig-chapter13-1.jpg` | Fig. 13.1, Robotics chapter, Elsevier | Poultry case study |
+
+Captions live in `data/3-projects.js`. To swap a figure, overwrite the file in
+`media/` keeping the same name — nothing else needs editing. To remove one,
+delete its `{...}` entry from that case study's `media` array.
+
+A figure whose file is missing removes itself from the page silently, so a
+broken path never shows a broken image.
+
+### A note on rights
+
+These are your own figures, and each carries its full citation. Your MDPI
+papers (*Sensors*, *AgriEngineering*) are CC BY, so reuse is explicit. For the
+Taylor & Francis, Elsevier and Wiley articles, author agreements commonly
+permit reusing your own figures on a personal academic page with citation, but
+the terms differ per publisher and per agreement — worth a check against each
+one, or a RightsLink request, before you publicise the site widely.
+
 ## Add a video
+
+
 
 **Long clips, talks, anything with sound → YouTube or Vimeo.** Upload it there,
 then reference the ID:
