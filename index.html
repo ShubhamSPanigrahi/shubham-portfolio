@@ -193,6 +193,41 @@ section.alt{background:var(--bg-alt)}
 }
 
 /* ============ STATS ============ */
+/* ============ COMING SOON ============ */
+.soon{padding:0 0 70px}
+.soonbox{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:34px; align-items:center;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:26px; box-shadow:var(--shadow-sm); position:relative; overflow:hidden}
+.soonbox::before{content:""; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(135deg,transparent 0 22px,color-mix(in srgb,var(--rust) 5%,transparent) 22px 24px);
+  opacity:.5}
+.soonshot{position:relative; border:1px solid var(--line-strong); border-radius:10px; overflow:hidden;
+  background:var(--bg-alt); box-shadow:var(--shadow-md)}
+.browserbar{display:flex; align-items:center; gap:6px; padding:9px 12px;
+  background:var(--surface-2); border-bottom:1px solid var(--line)}
+.browserbar i{width:9px; height:9px; border-radius:50%; background:var(--line-strong); display:block}
+.browserbar span{flex:1; height:15px; margin-left:8px; border-radius:20px; background:var(--bg-alt);
+  border:1px solid var(--line)}
+.soonshot img{width:100%; display:block; filter:saturate(.92)}
+.soonshot .veil{position:absolute; inset:38px 0 0; pointer-events:none;
+  background:linear-gradient(180deg,transparent 68%,color-mix(in srgb,var(--surface) 42%,transparent) 100%)}
+.soonskel{padding:22px; display:grid; gap:11px}
+.soonskel i{display:block; height:11px; border-radius:6px; background:var(--line); opacity:.75}
+.soonskel i:nth-child(1){width:52%; height:15px}
+.soonskel i:nth-child(2){width:88%} .soonskel i:nth-child(3){width:74%}
+.soonskel i:nth-child(4){width:40%; height:34px; border-radius:8px; margin-top:6px}
+.soonbadge{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:.64rem;
+  letter-spacing:.15em; text-transform:uppercase; font-weight:600; color:var(--rust-ink);
+  background:var(--rust-wash); padding:7px 13px; border-radius:100px; margin-bottom:16px}
+.soonbadge i{width:6px; height:6px; border-radius:50%; background:var(--rust); animation:pulse 2.4s infinite}
+.soontx h2{font-size:clamp(1.35rem,2.5vw,1.95rem); letter-spacing:-.02em; margin-bottom:12px}
+.soontx p{font-size:14.8px; color:var(--ink-soft); line-height:1.65; margin-bottom:14px}
+.soonnote{font-family:var(--serif); font-style:italic; font-size:16px; color:var(--teal) !important; font-weight:600}
+.soonmeta{font-family:var(--mono); font-size:.66rem; line-height:1.75; letter-spacing:.03em;
+  color:var(--ink-faint); padding-top:14px; border-top:1px dashed var(--line)}
+.soontx>*{position:relative}
+@media(max-width:860px){.soonbox{grid-template-columns:1fr; gap:24px; padding:20px}}
+
 .statstrip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--surface-2)}
 .statgrid{display:grid; grid-template-columns:repeat(4,1fr)}
 .stat{padding:30px 24px; border-right:1px solid var(--line); position:relative}
@@ -612,6 +647,26 @@ html[data-theme="dark"] .toast{background:var(--teal); color:#06202A}
   </div>
 </section>
 
+<!-- ============ COMING SOON ============ -->
+<section class="soon" id="soon" aria-labelledby="soon-title" hidden>
+  <div class="wrap">
+    <div class="soonbox rv">
+      <div class="soonshot">
+        <div class="browserbar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+        <div id="soon-media"></div>
+        <span class="veil" aria-hidden="true"></span>
+      </div>
+      <div class="soontx">
+        <span class="soonbadge"><i aria-hidden="true"></i><span id="soon-badge"></span></span>
+        <h2 id="soon-title"></h2>
+        <p id="soon-body"></p>
+        <p class="soonnote" id="soon-note"></p>
+        <div class="soonmeta" id="soon-meta"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ STATS ============ -->
 <div class="statstrip">
   <div class="statgrid" id="stats">
@@ -949,6 +1004,32 @@ const FILL=s=>String(s).replace(/\{n\}/g,N_PUBS).replace(/\{lead\}/g,N_LEAD)
 $('#pub-h2').innerHTML=FILL(SECTIONS.publications.title);
 $('#pub-lede').innerHTML=FILL(SECTIONS.publications.lede);
 $('#lastup').textContent=LAST_UPDATED.label;
+if(typeof SOON==='object'&&SOON&&SOON.show!==false){
+  const s=$('#soon');
+  $('#soon-badge').innerHTML=SOON.badge||'In development';
+  $('#soon-title').innerHTML=SOON.title||'';
+  $('#soon-body').innerHTML=SOON.body||'';
+  $('#soon-note').innerHTML=SOON.note||'';
+  $('#soon-meta').innerHTML=SOON.meta||'';
+  if(!SOON.meta)$('#soon-meta').style.display='none';
+  const host=$('#soon-media');
+  const skeleton=()=>{host.innerHTML='<div class="soonskel" aria-hidden="true"><i></i><i></i><i></i><i></i></div>';};
+  skeleton();
+  if(SOON.shot){
+    const im=new Image();
+    im.alt=SOON.shotAlt||'';
+    im.addEventListener('load',()=>host.replaceChildren(im),{once:true});
+    im.addEventListener('error',skeleton,{once:true});
+    im.src=SOON.shot;
+  }
+  if(SOON.href){
+    const a=document.createElement('a');
+    a.href=SOON.href; a.target='_blank'; a.rel='noopener noreferrer';
+    a.className='btn sec'; a.style.marginTop='4px'; a.textContent=SOON.linkText||'Open the preview';
+    $('#soon-note').after(a);
+  }
+  s.hidden=false;
+}
 if(typeof SITE==='object'&&SITE.heroVideo&&SITE.heroVideo.src){
   const wrap=$('.canvwrap'), hv=SITE.heroVideo;
   const v=document.createElement('video');
